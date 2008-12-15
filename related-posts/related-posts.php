@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 /*
 Plugin Name: Related Posts
-Version: 0.1
+Version: 0.2
 Plugin URI: http://www.rene-ade.de/inhalte/wordpress-plugin-relatedposts.html
 Description: This wordpress plugin provides tagcloud that shows the related posts of a post, and can replace a keyword within a post to a list of related posts.
 Author: Ren&eacute; Ade
@@ -41,25 +41,22 @@ function rp_get_related_posts( $post, $limit ) {
     return array(); // no related posts
 
   // get term ids
-  $termids = array();
+  $termtaxonomyids = array();
   foreach( $tags as $tag ) {
-    $termids[ $tag->term_id ] = $tag->term_id;
+    $termtaxonomyids[ $tag->term_taxonomy_id ] = $tag->term_taxonomy_id;
   }
-  if( count($termids)<=0 ) // we cannot get related posts without the termids
+  if( count($termtaxonomyids)<=0 ) // we cannot get related posts without the termtaxonomyids
     return array(); // no related posts
   
   // the query to get the related posts
-  $query = "SELECT DISTINCT $wpdb->posts.*, COUNT( tr.object_id) AS cnt " // get posts and count
-          ."FROM $wpdb->term_taxonomy tt, $wpdb->term_relationships tr, $wpdb->posts "
-          ."WHERE 1 "
-            ."AND tt.taxonomy = 'post_tag' " // search for tags
-            ."AND tt.term_taxonomy_id = tr.term_taxonomy_id " // get relations
-            ."AND tr.object_id = $wpdb->posts.ID " // get posts
-            ."AND tt.term_id IN( ".implode(',',$termids)." ) " // only with the same tags
-            ."AND $wpdb->posts.ID != $post->ID " // only other posts, not the post selfe
-            ."AND $wpdb->posts.post_status = 'publish' " // only published posts
+  $query = "SELECT p.ID, COUNT(tr.object_id) AS cnt " // get post ids and count
+          ."FROM $wpdb->term_relationships AS tr, $wpdb->posts AS p "
+          ."WHERE tr.object_id = p.id " // build relations
+            ."AND tr.term_taxonomy_id IN(".implode(',',$termtaxonomyids).") " // only with the same tags
+            ."AND p.id!=$post->ID " // only other posts, not the post selfe
+            ."AND p.post_status='publish' " // only published posts
           ."GROUP BY tr.object_id " // group by relation
-          ."ORDER BY cnt DESC, $wpdb->posts.post_date_gmt DESC " // order by count best matches first, if same order by date
+          ."ORDER BY cnt DESC, p.post_date_gmt DESC " // order by count best matches first, and by date within same count
           ."LIMIT $limit "; // get only the top x
   
   // run the query and return the result
@@ -159,7 +156,8 @@ function rp_filter_the_content( $content ) {
   global $post; // the current post
  
   // replace placeholders
-  $content = str_replace( '%RELATEDPOSTS%', rp_getstring_related_posts($post,array()), $content );
+  if( strpos($content,'%RELATEDPOSTS%')!==false )
+    $content = str_replace( '%RELATEDPOSTS%', rp_getstring_related_posts($post,array()), $content );
    
   return $content;
 }

@@ -1,11 +1,12 @@
 === RelatedPosts ===
 Contributors: reneade
 Donate link: http://www.rene-ade.de/stichwoerter/spenden
-Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets, related, relation
+Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 Stable tag: trunk
 Requires at least: 2.3
+Tested up to: 2.7
 
-This WordPress plugin provides multiple options to show the via tags related posts of a post (via a sidebar widget for example).
+This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
 
 == Description ==
 
@@ -24,7 +25,7 @@ To include the list of related posts at the end of each post you can add the fol
 ?>
 
 Plugin Website: http://www.rene-ade.de/inhalte/wordpress-plugin-relatedposts.html
-Comments are welcome! And of course, I also like presents of my Amazon-Wishlist or paypal donations to finance my website. :-)
+Comments are welcome! And of course, I also like presents of my Amazone-Wishlist or paypal donations to finance my website. :-)
 
 == Installation ==
 
