@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 /*
 Plugin Name: Related Posts
-Version: 0.2
+Version: 0.3
 Plugin URI: http://www.rene-ade.de/inhalte/wordpress-plugin-relatedposts.html
 Description: This wordpress plugin provides tagcloud that shows the related posts of a post, and can replace a keyword within a post to a list of related posts.
 Author: Ren&eacute; Ade
@@ -58,9 +58,24 @@ function rp_get_related_posts( $post, $limit ) {
           ."GROUP BY tr.object_id " // group by relation
           ."ORDER BY cnt DESC, p.post_date_gmt DESC " // order by count best matches first, and by date within same count
           ."LIMIT $limit "; // get only the top x
+
+  // caching
+  global $rp_cache;
+  $rp_cache_id = md5( $query );
+  if( !is_array($rp_cache) )
+    $rp_cache = array();
+  if( array_key_exists($rp_cache_id,$rp_cache) )
+    return $rp_cache[$rp_cache_id];
   
   // run the query and return the result
-  return $wpdb->get_results( $query );
+  $posts = $wpdb->get_results( $query );
+  
+  // caching
+  if( $posts )
+    $rp_cache[$rp_cache_id] = $posts;
+
+  // return
+  return $posts;
 }
 
 //-----------------------------------------------------------------------------
