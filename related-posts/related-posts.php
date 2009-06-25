@@ -2,7 +2,7 @@
 //-----------------------------------------------------------------------------
 /*
 Plugin Name: Related Posts
-Version: 0.3.1
+Version: 0.3.2
 Plugin URI: http://www.rene-ade.de/inhalte/wordpress-plugin-relatedposts.html
 Description: This wordpress plugin provides tagcloud that shows the related posts of a post, and can replace a keyword within a post to a list of related posts.
 Author: Ren&eacute; Ade
@@ -23,6 +23,14 @@ ARGS:
   'eachpost' => '<li><a href="%permalink%">%title%</a></li>', // for each related post
   'noposts' => '' // can be a string to display if there are no related posts
 */
+
+//-----------------------------------------------------------------------------
+
+if( !function_exists('rp_plugin_basename') ) {
+  function rp_plugin_basename() {
+    return plugin_basename(__FILE__);
+  }  
+}
 
 //-----------------------------------------------------------------------------
 
@@ -300,8 +308,8 @@ function rp_init() {
 //-----------------------------------------------------------------------------
 
 // actions
-add_action( 'activate_'.plugin_basename(__FILE__),   'rp_activate' );
-add_action( 'deactivate_'.plugin_basename(__FILE__), 'rp_deactivate' );
+add_action( 'activate_'.rp_plugin_basename(),   'rp_activate' );
+add_action( 'deactivate_'.rp_plugin_basename(), 'rp_deactivate' );
 add_action( 'init', 'rp_init');
 
 // filter text to replace relatedposts placeholder
