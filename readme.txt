@@ -1,6 +1,6 @@
 === RelatedPosts ===
-Contributors: test
-Donate link: test
+Contributors: reneade
+Donate link: http://www.rene-ade.de/stichwoerter/spenden
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 Stable tag: trunk
 Requires at least: 2.3
