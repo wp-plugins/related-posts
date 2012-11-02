@@ -1,6 +1,5 @@
 === RelatedPosts ===
-Contributors: reneade
-Donate link: http://www.rene-ade.de/stichwoerter/spenden
+Contributors: test
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 Stable tag: trunk
 Requires at least: 2.3
@@ -24,8 +23,6 @@ To include the list of related posts at the end of each post you can add the fol
     rp_related_posts( '<br />Verwandte Beitr&auml;ge:' );
 ?>
 
-Plugin Website: http://www.rene-ade.de/inhalte/wordpress-plugin-relatedposts.html
-Comments are welcome! And of course, I also like presents of my Amazone-Wishlist or paypal donations to finance my website. :-)
 
 == Installation ==
 
