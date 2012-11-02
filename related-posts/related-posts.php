@@ -3,10 +3,10 @@
 /*
 Plugin Name: Related Posts
 Version: 0.3.2
-Plugin URI: http://www.rene-ade.de/inhalte/wordpress-plugin-relatedposts.html
+Plugin URI: test
 Description: This wordpress plugin provides tagcloud that shows the related posts of a post, and can replace a keyword within a post to a list of related posts.
-Author: Ren&eacute; Ade
-Author URI: http://www.rene-ade.de
+Author: test
+Author URI: test
 Min WP Version: 2.3
 */
 //-----------------------------------------------------------------------------
