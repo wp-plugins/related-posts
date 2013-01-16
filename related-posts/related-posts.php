@@ -193,13 +193,6 @@ function rp_widget( $args ) {
   if( !is_single() ) // show widget only on post page
     return;
   
-  // comment // if you dont like this comment, you may remove it :-(
-  echo '<!-- ';
-  echo 'WordPress Plugin RelatedPosts by René Ade';
-  echo ' - ';
-  echo 'http://www.rene-ade.de/inhalte/wordpress-plugin-relatedposts.html';
-  echo ' -->';
-
   // args
   extract( $args ); // extract args
   
