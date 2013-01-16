@@ -1,5 +1,5 @@
 === RelatedPosts ===
-Contributors: test
+Contributors: jureham
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 Stable tag: trunk
 Requires at least: 2.3
