@@ -1,43 +1,67 @@
-=== RelatedPosts ===
+﻿=== Plugin Name ===
 Contributors: jureham
-Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
-Stable tag: trunk
-Requires at least: 2.3
-Tested up to: 2.9
+Tags: related,posts,post,related posts,plugin,link,links,navigation,plugin,Post,posts,search,sidebar,tag,tags,widget,widgets
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LB3MVPLUAWCY6
+License: GPLv2
+Requires at least: 3.3
+Tested up to: 3.5
+Stable tag: 2.3
 
-This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
+Related Posts generates a list of related posts with thumbnails and gives you click-through statistics.
 
 == Description ==
 
-This WordPress plugin provides multiple options to show the via tags related posts of a post. It contains a sidebar widget that is only visible when viewing a single post and displays a list of posts that are related with the current post via the tags. The number of related posts to display can be configured. The posts are sorted by the number of matching tags and then by the post date. It is also possible to insert the list of related post in a post via a placeholder. You can also embedd the list of related post in template files to add it to the bottom of each post page.
+Quickly increase your readers' engagement with your posts by adding Related Posts in the footer of your content. The plugin also delivers statistics about Pageviews and Clicks\*. It supports different styles, thumbnails and is fully customizable.
 
-Placeholders for the widget configuration, and function arguments:
-%title% will be replaced with the title of the post.
-%permalink% will be replaced with the permalink of the post.
+After installation, go to Settings -> Related Posts in your plugins list and Turn on Advanced Features!
 
-To embedd the list of related posts in a post, you can use the placeholder "%RELATEDPOSTS%" within your text, which will get replaced with the list.
+\* Real time traffic analytics are provided via third party service.
 
-To include the list of related posts at the end of each post you can add the folowing line in the "singel.php" of your template:
-<?php 
-  if( function_exists('rp_related_posts') )
-    rp_related_posts( '<br />Verwandte Beitr&auml;ge:' );
-?>
+== Frequently Asked Questions ==
 
+= Why should I use this plugin and not any other? =
+
+Related Posts is constantly improved to bring you the highest rates of audience engagement with your content. Our highest Click-Through rates speak for themselves.
+
+= What does this plugin do? =
+
+It places a list of links with thumbnails at the bottom of your posts. It increases pageviews and engages readers to stay on your site longer and discover more of your content.
+
+= Are there any settings? Plenty! =
+
+* thumbnail size, style
+* number of posts
+* display post excerpt, publish date, number of comments
+* categories to exclude
+* set default image
+
+= Does it support mobile themes? =
+
+Yes, related posts are responsive so they adapt to the screen size to ensure maximum click-through rates.
 
 == Installation ==
 
-1. Upload the folder 'related-posts' with all files to '/wp-content/plugins' on your webserver
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Make sure that your posts have tags (no tags = no relations).
-4. Add the widget "related posts" to your sidebar and configure it as you like, use the placeholder "%RELATEDPOSTS%" within your posts, or add the following code to the single.php of your theme:
-<?php 
-  if( function_exists('rp_related_posts') )
-    rp_related_posts( '<br />Related Posts:' );
-?>
+= Via admin: =
+1. Go to Plugins -> Add New
+2. Search for Related Posts
+3. Install and activate the first result
+4. After installation go to Settings -> Related Posts in your plugins list to turn on Thumbnails & Statistics
+5. Done!
 
-German screenshots of the installation, configuration and usage of this plugin: related-posts_install_de.jpg
+= Via upload: =
+1. Download the plugin .zip file
+2. Log in to yourdomain.com/wp-admin
+3. Click Plugins -> Add New -> Upload
+4. After installation go to Settings -> Related Posts in your plugins list to turn on Thumbnails & Statistics
+5. You're finished!
+
+== Screenshots ==
+1. Related Posts Default Theme.
+2. Related Posts reporting real time statistics for mobile and desktop devices.
+3. Related Posts responsive theme on a Galaxy Nexus and iPhone 4s.
 
 == Changelog ==
 
-= 0.3.3 =
-* Fixed invalid header error
+= 2.3 =
+* Syncing code with our other plugin (WordPress Related Posts)
+
