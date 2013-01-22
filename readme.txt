@@ -65,3 +65,8 @@ Yes, related posts are responsive so they adapt to the screen size to ensure max
 = 2.3 =
 * Syncing code with our other plugin (WordPress Related Posts)
 
+== Upgrade Notice ==
+
+= 2.3 =
+WARNING: NOT COMPATIBLE WITH PREVIOUS VERSION. Plugin will have to be reconfigured manually.
+

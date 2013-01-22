@@ -50,6 +50,7 @@ function wp_rp_add_related_posts_hook($content) {
 		if (!isset($wp_rp_output[$post->ID])) {
 			$wp_rp_output[$post->ID] = wp_rp_get_related_posts();
 		}
+		$content = str_replace('%RELATEDPOSTS%', '', $content); // used for gp
 		$content = $content . $wp_rp_output[$post->ID];
 	}
 
