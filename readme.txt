@@ -1,20 +1,16 @@
 ﻿=== Plugin Name ===
 Contributors: jureham
-Tags: link,links,navigation,plugin,Post,posts,related,related posts,search,sidebar,tag,tags,widget,widgets
+Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.5
 Stable tag: 2.3
 
-Related Posts shows links with thumbnails under your content to keep readers on your site longer.
+This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
 
 == Description ==
 
-Easily boost engagement with your visitors by guiding them through the right posts. Check performance with real time analytics*. Customize everything about this plugin.
-
-To use the full power of this plugin, go to Settings -> Related Posts in your plugins list and Turn on Advanced Features!
-
-* Real time click analytics are provided via third party service.
+This WordPress plugin provides multiple options to show the via tags related posts of a post. It contains a sidebar widget that is only visible when viewing a single post and displays a list of posts that are related with the current post via the tags. The number of related posts to display can be configured. The posts are sorted by the number of matching tags and then by the post date. It is also possible to insert the list of related post in a post via a placeholder. You can also embedd the list of related post in template files to add it to the bottom of each post page.
 
 == Frequently Asked Questions ==
 
