@@ -1,10 +1,10 @@
 ﻿=== Plugin Name ===
-Contributors: jureham
+Contributors: andraz
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.3
+Stable tag: 2.4.1
 
 This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
 
@@ -40,6 +40,12 @@ No, we've taken extra measure to not affect SEO or the speed of your site. :)
 3. Responsive mobile theme.
 
 == Changelog ==
+
+= 2.4.1 =
+* Limit related post age
+* Bugfix for thumbnail extraction
+* Related posts on mobile now load as you scroll!
+
 
 = 2.3 =
 * Syncing code with our other plugin (WordPress Related Posts)
