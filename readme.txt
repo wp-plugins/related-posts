@@ -1,5 +1,5 @@
 ﻿=== Plugin Name ===
-Contributors: Zemanta
+Contributors: zemanta
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 License: GPLv2
 Requires at least: 3.3
