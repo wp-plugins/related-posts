@@ -28,7 +28,6 @@ define("WP_RP_STATIC_CTR_PAGEVIEW_FILE", "js/pageview.js");
 define("WP_RP_STATIC_RECOMMENDATIONS_JS_FILE", "js/recommendations.js");
 define("WP_RP_STATIC_RECOMMENDATIONS_CSS_FILE", "css-img/recommendations.css");
 
-define("WP_RP_STATIC_INFINITE_RECS_JS", "js/infiniterecs.js");
 
 define("WP_RP_RECOMMENDATIONS_AUTO_TAGS_MAX_WORDS", 200);
 define("WP_RP_RECOMMENDATIONS_AUTO_TAGS_MAX_TAGS", 15);
@@ -218,15 +217,6 @@ function wp_rp_install() {
 	wp_rp_related_posts_db_table_install();
 }
 
-function wp_rp_migrate_2_4() {
-	$wp_rp_meta = get_option('wp_rp_meta');
-	$wp_rp_options = get_option('wp_rp_options');
-
-	$wp_rp_meta['version'] = '2.4.1';
-
-	update_option('wp_rp_meta', $wp_rp_meta);
-	update_option('wp_rp_options', $wp_rp_options);
-}
 function wp_rp_migrate_2_3() {
 	$wp_rp_meta = get_option('wp_rp_meta');
 	$wp_rp_options = get_option('wp_rp_options');

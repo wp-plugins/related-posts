@@ -1,5 +1,5 @@
 ﻿=== Plugin Name ===
-Contributors: andraz
+Contributors: Zemanta
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 License: GPLv2
 Requires at least: 3.3
@@ -27,6 +27,10 @@ Yes, you can easily switch between themes that we provided or simply change the 
 
 No, we've taken extra measure to not affect SEO or the speed of your site. :)
 
+= Why does Zemanta have 3 similar plugins? What's the difference between them? =
+
+We adopted the principle of having three "release channels". You can try the most experimental (still stable!) features in [Related Posts](http://wordpress.org/extend/plugins/related-posts/ "Related Posts"). The more advanced ones are in [WordPress Related Posts](http://wordpress.org/extend/plugins/wordpress-23-related-posts-plugin/ "WordPress Related Posts"). If you're looking for the Professional version go for [Related Posts by Zemanta](http://wordpress.org/extend/plugins/related-posts-by-zemanta/ "Related Posts by Zemanta").
+
 == Installation ==
 
 1. Unzip to wp-content/plugins on your server.
@@ -44,8 +48,6 @@ No, we've taken extra measure to not affect SEO or the speed of your site. :)
 = 2.4.1 =
 * Limit related post age
 * Bugfix for thumbnail extraction
-* Related posts on mobile now load as you scroll!
-
 
 = 2.3 =
 * Syncing code with our other plugin (WordPress Related Posts)
