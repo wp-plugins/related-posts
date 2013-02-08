@@ -144,7 +144,7 @@ function wp_rp_register_blog($account_type='other') {
 		'timeout' => 30
 	);
 
-	$response = wp_remote_get(WP_RP_CTR_DASHBOARD_URL . 'register/?blog_url=' . get_bloginfo('wpurl') .
+	$response = wp_remote_get(WP_RP_CTR_DASHBOARD_URL . 'register/?blog_url=' . get_bloginfo('wpurl') . '&type=gp' .
 			'&account_type=' . $account_type .
 			($meta['new_user'] ? '&new' : '') .
 			($meta['turn_on_button_pressed'] ? ('&turn_on=' . $meta['turn_on_button_pressed']) : ''),
