@@ -464,7 +464,7 @@ function wp_rp_get_related_posts($before_title = '', $after_title = '') {
 		$posts_footer = '<div class="wp_rp_footer">' .
 				((current_user_can('edit_posts') && $remote_recommendations)
 					? '<a class="wp_rp_edit" id="wp_rp_edit_related_posts" href="#" id="wp_rp_edit_related_posts">Edit Related Posts</a>'
-					: ($options['display_zemanta_linky'] ? '<a class="wp_rp_backlink" target="_blank" rel="nofollow" href="http://www.zemanta.com/?wp-related-posts">Zemanta</a>' : '')
+					: ($options['display_zemanta_linky'] ? '<a class="wp_rp_backlink" target="_blank" rel="nofollow" href="http://www.zemanta.com/?gp-related-posts">Zemanta</a>' : '')
 				) .
 			'</div>';
 	}
