@@ -47,7 +47,8 @@ We adopted the principle of having three "release channels". You can try the mos
 
 = 2.5.1 =
 * Fixed bug with invalid output html
-* Improved Infinite Stream theme (A/B test)
+* Improved Infinite Stream theme
+* implemented mobile and tablet A/B testing capability
 
 = 2.5 =
 * Mobile themes settings
