@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Related Posts
-Version: 2.5
+Version: 2.5.1
 Plugin URI: http://wordpress.org/extend/plugins/related-posts/
 Description: Quickly increase your readers' engagement with your posts by adding Related Posts in the footer of your content.
 Author: Zemanta Ltd.
@@ -329,6 +329,9 @@ add_action('wp_ajax_rp_blogger_network_blacklist', 'wp_rp_ajax_blogger_network_b
 
 function wp_rp_head_resources() {
 	global $post, $wpdb;
+	global $wp_rp_session_id, $wp_rp_test_group; // used for AB test 
+	
+	//error_log("call to wp_rp_head_resources");
 
 	if (wp_rp_should_exclude()) {
 		return;
@@ -371,7 +374,8 @@ function wp_rp_head_resources() {
 			(current_user_can('edit_posts') ?
 				"\twindow._wp_rp_admin_ajax_url = '" . admin_url('admin-ajax.php') . "';\n" .
 				"\twindow._wp_rp_plugin_static_base_url = '" . esc_js(plugins_url('static/' , __FILE__)) . "';\n"
-			: '');
+			: '')  . 
+			wp_rp_render_head_script_variables();
 	}
 
 	$output .= "<script type=\"text/javascript\">\n" . $output_vars . "</script>\n";
@@ -496,3 +500,109 @@ function wp_rp_get_related_posts($before_title = '', $after_title = '') {
 
 	return "\n" . $output . "\n";
 }
+
+
+
+// --------- mobile AB testing -----------
+
+define('WP_RP_AB_TEST_PARAM', 'wprptest');
+define('WP_RP_AB_TEST_COOKIE', 'wprptest');
+
+global $wp_rp_session_id, $wp_rp_test_group;
+$wp_rp_session_id = false; $wp_rp_test_group = 0;
+
+function wp_rp_render_head_script_variables() {
+	// used when rendering <head>
+	global $wp_rp_session_id, $wp_rp_test_group;
+	
+	$output = '';
+	if (wp_is_mobile()){
+		//error_log("AB data appended in head <script>");
+		$output = "\twindow._wp_rp_test_group = " . $wp_rp_test_group . ";\n" .
+		"\twindow._wp_rp_sid = \"" . $wp_rp_session_id . "\";\n";
+	}
+	return $output;
+}
+
+function wp_rp_set_test_cookie() {
+	global $wp_rp_session_id;
+	
+	//error_log("wp_rp_set_test_cookie");
+	//error_log("session_id: " .$_COOKIE[WP_RP_AB_TEST_COOKIE]);
+	
+	$wp_rp_session_id = isset($_COOKIE[WP_RP_AB_TEST_COOKIE]) ? $_COOKIE[WP_RP_AB_TEST_COOKIE] : false;
+	if ($wp_rp_session_id) {
+		//error_log("cookie is set - type: " . gettype($wp_rp_session_id));
+		return;
+	}
+	
+	$wp_rp_session_id = (string)rand();
+	//error_log("cookie is NOT set");
+	setcookie(WP_RP_AB_TEST_COOKIE, $wp_rp_session_id, time() + 60 * 30);
+}
+
+function wp_rp_is_suitable_for_test() {
+	$options = wp_rp_get_options();
+	return $options['ctr_dashboard_enabled'] && wp_is_mobile();
+}
+
+function wp_rp_get_post_url($post_id) {
+	global $wp_rp_test_group;
+
+	//error_log("wp_rp_get_post_url");
+
+	$post_url = get_permalink($post_id);
+
+	if (!wp_rp_is_suitable_for_test()) {
+		return $post_url;
+	}
+
+	if (strpos($post_url, '?') === false) {
+		$post_url .= '?' .WP_RP_AB_TEST_PARAM. '=' . $wp_rp_test_group;
+	} else {
+		$post_url .= '&' .WP_RP_AB_TEST_PARAM. '=' . $wp_rp_test_group;
+	}
+	return $post_url;
+}
+
+
+function wp_rp_init_test() {
+	$platform_options = wp_rp_get_platform_options();
+	if ($platform_options['theme_name'] !== 'm-stream.css') {
+		return;
+	}
+
+	global $wp_rp_session_id, $wp_rp_test_group, $post;
+	
+	//error_log("wp_rp_init_test");
+	
+	if ($wp_rp_session_id) {
+		//error_log("session id set");
+		return;
+	}
+
+	if (!wp_rp_is_suitable_for_test()) {
+		//error_log("not suitable for test");
+		return;
+	}
+	
+	wp_rp_set_test_cookie();
+
+	if (isset($_GET[WP_RP_AB_TEST_PARAM])) {
+		$wp_rp_test_group = intval($_GET[WP_RP_AB_TEST_PARAM]);
+		//error_log("wp rep test param is set: " . $wp_rp_test_group);
+		return;
+	}
+
+	$wp_rp_test_group = abs(crc32($wp_rp_session_id) % 2);
+
+	$options = wp_rp_get_options();
+	if ($post && $post->post_type === 'post' && (($options["on_single_post"] && is_single()))) {
+		wp_redirect(wp_rp_get_post_url($post->ID), 301);
+		//error_log("redirect done");
+		exit;
+	}
+	//error_log("skipped redirect");
+}
+add_action('template_redirect', 'wp_rp_init_test');
+
