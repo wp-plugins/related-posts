@@ -103,6 +103,16 @@ function wp_rp_admin_head() {
 }
 
 /**
+* Add settings link to installed plugins list
+**/
+function wp_rp_add_link_to_settings($links) {
+	return array_merge( array(
+		'<a href="' . admin_url('admin.php?page=wordpress-related-posts') . '">' . __('Settings', 'wp_related_posts') . '</a>',
+	), $links);
+}
+add_filter('plugin_action_links_' . WP_RP_PLUGIN_FILE, 'wp_rp_add_link_to_settings', 10, 2);
+
+/**
 * Settings
 **/
 
@@ -681,6 +691,7 @@ jQuery(function($) {
 									<input name="wp_rp_ctr_dashboard_enabled" type="checkbox" id="wp_rp_ctr_dashboard_enabled" value="yes" <?php checked($options['ctr_dashboard_enabled']); ?> />
 									<?php _e("Turn statistics on",'wp_related_posts');?>*
 								</label>
+								<br />
 								<div style="display:<?php echo $meta['show_traffic_exchange'] ? 'block' : 'none' ?>;">
 									<label>
 										<input name="wp_rp_traffic_exchange_enabled" type="checkbox" id="wp_rp_traffic_exchange_enabled" value="yes"<?php checked($options['traffic_exchange_enabled']); ?>>

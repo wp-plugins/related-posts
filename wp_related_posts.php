@@ -3,12 +3,14 @@
 Plugin Name: Related Posts
 Version: 2.6
 Plugin URI: http://wordpress.org/extend/plugins/related-posts/
-Description: Quickly increase your readers' engagement with your posts by adding Related Posts in the footer of your content.
+Description: Quickly increase your readers' engagement with your posts by adding Related Posts in the footer of your content. Click on <a href="admin.php?page=wordpress-related-posts">Related Posts tab</a> to configure your settings.
 Author: Zemanta
 Author URI: http://www.zemanta.com
 */
 
 define('WP_RP_VERSION', '2.6');
+
+define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
 include_once(dirname(__FILE__) . '/config.php');
 include_once(dirname(__FILE__) . '/lib/stemmer.php');
