@@ -60,7 +60,7 @@ We adopted the principle of having three "release channels". You can try the mos
 * Mobile themes settings
 * Editorial control
 * New Pinterest inspired theme
-* Support us by displaying our logo
+* Support us by displaying our logo (opt-in)
 * Small output html layout change
 * Bugfixes
 
