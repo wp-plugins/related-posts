@@ -397,8 +397,8 @@ function wp_rp_settings_page() {
 				<div class="button_wrap">
 					<a data-type="singlebutton" href="#" class="zemanta-button turn-on">Turn on Related Posts</a>
 				</div>
-				<p>You'll get Settings, Themes, Thumbnails, Reader Exchange and Promoted Content.</p>
-				<p>These features are provided by <a target="_blank" href="http://www.zemanta.com">Zemanta</a> as a service.</p>
+				<p>By turning on Related Posts you agree to <a href="http://www.zemanta.com/rp-tos" target="_blank">terms of service.</a></p>
+				<p>You'll get Advanced Settings, Themes, Thumbnails and Analytics Dashboard. These features are provided by <a target="_blank" href="http://www.zemanta.com">Zemanta</a> as a service.</p>
 			</div>
 			<img class="screendesc" src="<?php echo plugins_url("static/img/turnonscreen.jpg", __FILE__); ?>" />
 		</div>
@@ -468,7 +468,7 @@ jQuery(function($) {
 		<iframe id="wp_rp_blogger_network_hidden_iframe" name="wp_rp_blogger_network_hidden_iframe" style="display: none"></iframe>
 		<?php endif; ?>
 
-		<form method="post" enctype="multipart/form-data" action="" id="wp_rp_settings_form" style="display: <?php echo ($meta['show_turn_on_button'] && !$meta['turn_on_button_pressed'] && !$meta['blog_id'] ? 'none' : 'block'); ?>;">
+		<form method="post" enctype="multipart/form-data" action="<?php echo admin_url('admin.php?page=wordpress-related-posts'); ?>" id="wp_rp_settings_form" style="display: <?php echo ($meta['show_turn_on_button'] && !$meta['turn_on_button_pressed'] && !$meta['blog_id'] ? 'none' : 'block'); ?>;">
 			<?php if ($options['ctr_dashboard_enabled']): ?>
 			<div id="wp_rp_earnings_holder" style="display:none;">
 				<h2><?php _e('Earnings', 'wp_related_posts'); ?></h2>

@@ -184,7 +184,7 @@ function wp_rp_install() {
 		'turn_on_button_pressed' => false,
 		'show_statistics' => false,
 		'show_traffic_exchange' => false,
-		'show_zemanta_linky_option' => true
+		'show_zemanta_linky_option' => false
 	);
 
 	$wp_rp_options = array(
@@ -201,7 +201,7 @@ function wp_rp_install() {
 		'traffic_exchange_enabled' => false,
 		'thumbnail_use_custom'			=> false,
 		'thumbnail_custom_field'		=> false,
-		'display_zemanta_linky'			=> false,
+		'display_zemanta_linky'			=> true,
 
 		'mobile' => array(
 			'display_comment_count'			=> false,
@@ -218,7 +218,7 @@ function wp_rp_install() {
 			'display_thumbnail'			=> false,
 			'display_excerpt'			=> false,
 			'excerpt_max_length'			=> 200,
-			'theme_name' 				=> 'momma.css',
+			'theme_name' 				=> 'vertical-m.css',
 			'theme_custom_css'			=> WP_RP_DEFAULT_CUSTOM_CSS,
 			'custom_theme_enabled' => false,
 		)
@@ -228,6 +228,13 @@ function wp_rp_install() {
 	update_option('wp_rp_options', $wp_rp_options);
 
 	wp_rp_related_posts_db_table_install();
+}
+
+function wp_rp_migrate_2_6() {
+	$wp_rp_meta = get_option('wp_rp_meta');
+	$wp_rp_meta['version'] = '2.7';
+	$wp_rp_meta['new_user'] = false;
+	update_option('wp_rp_meta', $wp_rp_meta);
 }
 
 function wp_rp_migrate_2_5() {

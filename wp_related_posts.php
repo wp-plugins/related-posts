@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: Related Posts
-Version: 2.6
+Version: 2.7
 Plugin URI: http://wordpress.org/extend/plugins/related-posts/
 Description: Quickly increase your readers' engagement with your posts by adding Related Posts in the footer of your content. Click on <a href="admin.php?page=wordpress-related-posts">Related Posts tab</a> to configure your settings.
 Author: Zemanta
 Author URI: http://www.zemanta.com
 */
 
-define('WP_RP_VERSION', '2.6');
+define('WP_RP_VERSION', '2.7');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
@@ -477,12 +477,13 @@ function wp_rp_get_related_posts($before_title = '', $after_title = '') {
 	}
 
 	$posts_footer = '';
-	if ($options['display_zemanta_linky'] || $remote_recommendations) {
+	if (current_user_can('edit_posts')) {
 		$posts_footer = '<div class="wp_rp_footer">' .
-				(current_user_can('edit_posts')
-					? '<a class="wp_rp_edit" id="wp_rp_edit_related_posts" href="#" id="wp_rp_edit_related_posts">Edit Related Posts</a>'
-					: ($options['display_zemanta_linky'] ? '<a class="wp_rp_backlink" target="_blank" rel="nofollow" href="http://www.zemanta.com/?gp-related-posts">Zemanta</a>' : '')
-				) .
+					'<a class="wp_rp_edit" href="#" id="wp_rp_edit_related_posts">Edit Related Posts</a>' .
+			'</div>';
+	} else if ($options['display_zemanta_linky']) {
+		$posts_footer = '<div class="wp_rp_footer">' .
+					'<a class="wp_rp_backlink" target="_blank" rel="nofollow" href="http://www.zemanta.com/?gp-related-posts">Zemanta</a>' .
 			'</div>';
 	}
 
