@@ -4,7 +4,7 @@ Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, lin
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 2.6
+Stable tag: 2.7
 
 This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
 
@@ -43,7 +43,16 @@ We adopted the principle of having three "release channels". You can try the mos
 2. Real time analytics for mobile and desktop devices.
 3. Responsive mobile theme.
 
+== Upgrade Notice ==
+
+= 2.7 =
+* New thumbnailer might break backwards compatibility for blogs with custom thumbnail sizes since it resizes all thumbnails to 150x150.
+
 == Changelog ==
+
+= 2.7 =
+* Improved thumbnailer
+* Bugfixes
 
 = 2.6 =
 * Improved editorial control
