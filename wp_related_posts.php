@@ -8,7 +8,7 @@ Author: Zemanta
 Author URI: http://www.zemanta.com
 */
 
-define('WP_RP_VERSION', '2.7');
+define('WP_RP_VERSION', '2.6');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
@@ -275,10 +275,20 @@ function wp_rp_generate_related_posts_list_items($related_posts, $selected_relat
 
 		if ($platform_options["display_excerpt"]){
 			$excerpt_max_length = $platform_options["excerpt_max_length"];
-			if($related_post->post_excerpt){
-				$output .= '<br /><small>' . (mb_substr(strip_shortcodes(strip_tags($related_post->post_excerpt)), 0, $excerpt_max_length)) . '...</small>';
-			} else {
-				$output .= '<br /><small>' . (mb_substr(strip_shortcodes(strip_tags($related_post->post_content)), 0, $excerpt_max_length)) . '...</small>';
+			$excerpt = '';
+
+			if ($related_post->post_excerpt){
+				$excerpt = strip_shortcodes(strip_tags($related_post->post_excerpt));
+			}
+			if (!$excerpt) {
+				$excerpt = strip_shortcodes(strip_tags($related_post->post_content));
+			}
+
+			if ($excerpt) {
+				if (strlen($excerpt) > $excerpt_max_length) {
+					$excerpt = mb_substr($excerpt, 0, $excerpt_max_length - 3) . '...';
+				}
+				$output .= '<br /><small>' . $excerpt . '</small>';
 			}
 		}
 		$output .=  '</li>';
@@ -477,11 +487,7 @@ function wp_rp_get_related_posts($before_title = '', $after_title = '') {
 	}
 
 	$posts_footer = '';
-	if (current_user_can('edit_posts')) {
-		$posts_footer = '<div class="wp_rp_footer">' .
-					'<a class="wp_rp_edit" href="#" id="wp_rp_edit_related_posts">Edit Related Posts</a>' .
-			'</div>';
-	} else if ($options['display_zemanta_linky']) {
+	if ($options['display_zemanta_linky']) {
 		$posts_footer = '<div class="wp_rp_footer">' .
 					'<a class="wp_rp_backlink" target="_blank" rel="nofollow" href="http://www.zemanta.com/?gp-related-posts">Zemanta</a>' .
 			'</div>';
