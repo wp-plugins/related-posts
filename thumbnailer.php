@@ -212,7 +212,7 @@ function wp_rp_get_post_thumbnail_img($related_post, $size = null, $force = fals
 	$options = wp_rp_get_options();
 	$platform_options = wp_rp_get_platform_options();
 
-	if (!$size) {
+	if (!$size || $size === 'thumbnail') {
 		$size = array(WP_RP_THUMBNAILS_WIDTH, WP_RP_THUMBNAILS_HEIGHT);
 	}
 
