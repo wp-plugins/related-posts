@@ -194,7 +194,7 @@ function wp_rp_get_attached_img_url($related_post, $size) {
 		$image_id = get_post_thumbnail_id($related_post->ID);
 	}
 
-	if (!$image_id) {
+	if (!$image_id && function_exists('get_post_format_meta')) {
 		// Image post format. Check wp-includes/media.php:get_the_post_format_image for the reference.
 		$meta = get_post_format_meta($related_post->ID);
 		if (!empty($meta['image'])) {
