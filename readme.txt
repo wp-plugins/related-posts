@@ -3,7 +3,7 @@ Contributors: zemanta
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 License: GPLv2
 Requires at least: 3.3
-Tested up to: 3.5
+Tested up to: 3.6
 Stable tag: 2.7.3
 
 This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
