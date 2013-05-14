@@ -8,7 +8,7 @@ Author: Zemanta
 Author URI: http://www.zemanta.com
 */
 
-define('WP_RP_VERSION', '2.6');
+define('WP_RP_VERSION', '2.7');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
