@@ -33,9 +33,21 @@ We adopted the principle of having three "release channels". You can try the mos
 
 == Installation ==
 
-1. Unzip to wp-content/plugins on your server.
-2. Activate through the 'Plugins' menu in WordPress
-3. Sign up and check your blog, every post should have the Related Posts widget below the text.
+= Via admin: =
+1. Go to Plugins -> Add New
+2. Search for Related Posts
+3. Install the plugin called "Related Posts" and activate it
+4. After activation click Turn on to get advanced features
+5. If you use any caching plugin please clear the cache
+6. Done!
+
+= Via upload: =
+1. Download the plugin .zip file
+2. Log in to yourdomain.com/wp-admin
+3. Click Plugins -> Add New -> Upload
+4. After installation activate the plugin and click Turn on to get advanced features
+5. If you use any caching plugin please clear the cache
+6. You're finished!
 
 == Screenshots ==
 
@@ -47,9 +59,6 @@ We adopted the principle of having three "release channels". You can try the mos
 
 = 2.7.2 =
 Fix for security vulnerability. Upgrade immediately.
-
-= 2.7 =
-* New thumbnailer might break backwards compatibility for blogs with custom thumbnail sizes since it resizes all thumbnails to 150x150.
 
 == Changelog ==
 
