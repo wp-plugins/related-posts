@@ -4,7 +4,7 @@ Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, lin
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 2.7.4
+Stable tag: 2.8
 
 This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
 
@@ -62,6 +62,12 @@ Fix for security vulnerability. Upgrade immediately.
 
 == Changelog ==
 
+= 2.8 =
+* New thumbnailer
+* Edit Related Posts gets a visual upgrade, search functionality and a dose of awesome
+* Removed AB testing on mobile infinite stream
+* Bugfix in tag generator
+
 = 2.7.4 =
 * Thumbnailer suppors Image Post Form in WordPress 3.6
 * Bugfix
@@ -114,3 +120,4 @@ This version adds a wrapper around related posts and a link to zemanta.com (can 
 
 = 2.3 =
 WARNING: NOT COMPATIBLE WITH PREVIOUS VERSION. Plugin will have to be reconfigured manually.
+
