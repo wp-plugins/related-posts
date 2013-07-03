@@ -3,8 +3,8 @@ Contributors: zemanta
 Tags: post, widget, sidebar, posts, links, plugin, tags, search, navigation, link, tag, widgets
 License: GPLv2
 Requires at least: 3.3
-Tested up to: 3.5
-Stable tag: 2.6
+Tested up to: 3.6
+Stable tag: 2.8
 
 This WordPress plugin provides multiple options to show the via tags related posts of a post (for example via a sidebar widget).
 
@@ -33,9 +33,21 @@ We adopted the principle of having three "release channels". You can try the mos
 
 == Installation ==
 
-1. Unzip to wp-content/plugins on your server.
-2. Activate through the 'Plugins' menu in WordPress
-3. Sign up and check your blog, every post should have the Related Posts widget below the text.
+= Via admin: =
+1. Go to Plugins -> Add New
+2. Search for Related Posts
+3. Install the plugin called "Related Posts" and activate it
+4. After activation click Turn on to get advanced features
+5. If you use any caching plugin please clear the cache
+6. Done!
+
+= Via upload: =
+1. Download the plugin .zip file
+2. Log in to yourdomain.com/wp-admin
+3. Click Plugins -> Add New -> Upload
+4. After installation activate the plugin and click Turn on to get advanced features
+5. If you use any caching plugin please clear the cache
+6. You're finished!
 
 == Screenshots ==
 
@@ -43,7 +55,37 @@ We adopted the principle of having three "release channels". You can try the mos
 2. Real time analytics for mobile and desktop devices.
 3. Responsive mobile theme.
 
+== Upgrade Notice ==
+
+= 2.7.2 =
+Fix for security vulnerability. Upgrade immediately.
+
 == Changelog ==
+
+= 2.8 =
+* New thumbnailer
+* Edit Related Posts gets a visual upgrade, search functionality and a dose of awesome
+* Removed AB testing on mobile infinite stream
+* Bugfix in tag generator
+
+= 2.7.4 =
+* Thumbnailer suppors Image Post Form in WordPress 3.6
+* Bugfix
+
+= 2.7.3 =
+* Due to popular demand, "Edit related posts" is back in action. Send us more feedback to support@zemanta.com. Thanks!
+
+= 2.7.2 =
+* Fix for Cross-Site Request Forgery vulnerability. Credits for finding and reporting the vulnerability go to Charlie Eriksen via Secunia SVCRP.
+
+= 2.7.1 =
+* Fixed post excerpt bug
+* Link back to Zemanta is off by default
+* Removed "edit related posts" functionality (already edited posts won't revert back)
+
+= 2.7 =
+* Improved thumbnailer
+* Bugfixes
 
 = 2.6 =
 * Improved editorial control
@@ -60,7 +102,7 @@ We adopted the principle of having three "release channels". You can try the mos
 * Mobile themes settings
 * Editorial control
 * New Pinterest inspired theme
-* Support us by displaying our logo
+* Support us by displaying our logo (opt-in)
 * Small output html layout change
 * Bugfixes
 
@@ -78,3 +120,4 @@ This version adds a wrapper around related posts and a link to zemanta.com (can 
 
 = 2.3 =
 WARNING: NOT COMPATIBLE WITH PREVIOUS VERSION. Plugin will have to be reconfigured manually.
+
