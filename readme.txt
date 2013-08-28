@@ -25,7 +25,8 @@ Google says that good outbound links help make the web a better place. And they 
 
 = What else is in it for me? =
 If your content is all English, safe for work and of good quality, we will recommend it to other writers. You’ll get links, traffic and love.
-I see promoted content. What is that?
+
+= I see promoted content. What is that? =
 That is how we keep this plugin free. Publishers pay us to show you related content from their sites. You don’t have to use it. However, we believe that promoted content widens the range of good quality content you can link to.
 
 
