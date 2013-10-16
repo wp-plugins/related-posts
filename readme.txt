@@ -56,9 +56,6 @@ Fix for security vulnerability. Upgrade immediately.
 
 == Changelog ==
 
-= 2.9 =
-* Bug fixes and updates
-
 = 2.8 =
 * New thumbnailer
 * Edit Related Posts gets a visual upgrade, search functionality and a dose of awesome
