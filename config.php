@@ -188,7 +188,8 @@ function wp_rp_install() {
 		'show_statistics' => false,
 		'show_traffic_exchange' => false,
 		'show_zemanta_linky_option' => true,
-		'classic_user' => true
+		'classic_user' => true,
+		'classic_user_old' => false
 	);
 
 	$wp_rp_options = array(
@@ -240,6 +241,32 @@ function wp_rp_is_classic() {
 		return true;
 	}
 	return false;
+}
+
+function wp_rp_is_classic_old() {
+	$meta = wp_rp_get_meta();
+	if (isset($meta['classic_user_old']) && $meta['classic_user_old']) {
+		return true;
+	}
+	return false;
+}
+
+function wp_rp_migrate_2_8() {
+	global $wpdb;
+
+	$wp_rp_meta = get_option('wp_rp_meta');
+	$wp_rp_meta['version'] = '2.9';
+	$wp_rp_meta['new_user'] = false;
+	$is_calssic_user = $wp_rp_meta['classic_user'];
+	if ($is_calssic_user) {
+		$wp_rp_meta['classic_user_old'] = false;
+	} else {
+		$wp_rp_meta['classic_user'] = true;
+		$wp_rp_meta['classic_user_old'] = true;
+	}
+
+
+	update_option('wp_rp_meta', $wp_rp_meta);
 }
 
 function wp_rp_migrate_2_7() {

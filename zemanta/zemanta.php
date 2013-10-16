@@ -19,6 +19,7 @@ class WPRPZemanta {
 	var $update_notes = array();
 	var $flash_data = null;
 	var $top_menu_slug = null;
+	var $is_old = false;
 
 	public function __construct()
 	{
@@ -73,11 +74,12 @@ class WPRPZemanta {
 	*
 	* Add any assets to the edit page
 	*/
-	public function assets() 
-	{	
+	public function assets() {
+
 		$this->render('assets', array(
 			'api_key' => $this->api_key,
 			'version' => $this->version,
+			'is_old' => $this->is_old,
 			'features' => $this->supported_features
 		));
 	}
@@ -131,8 +133,11 @@ class WPRPZemanta {
 	*
 	* Check to see if we need to create or import options
 	*/
-	public function check_options()
-	{
+	public function check_options() {
+		$wp_rp_meta = get_option('wp_rp_meta');
+
+		$this->is_old = $wp_rp_meta['classic_user_old'];
+
 		$this->api_key = $this->get_api_key();
 
 		if (!$this->api_key) 

@@ -1,14 +1,14 @@
 <?php
 /*
 Plugin Name: Related Posts
-Version: 2.8
+Version: 2.9
 Plugin URI: http://wordpress.org/extend/plugins/related-posts/
 Description: Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
 Author: Zemanta
 Author URI: http://www.zemanta.com
 */
 
-define('WP_RP_VERSION', '2.8');
+define('WP_RP_VERSION', '2.9');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
@@ -42,7 +42,7 @@ function wp_rp_init_zemanta() {
 
 function wp_rp_extend_adminbar() {
 	global $wp_admin_bar;
-	if (wp_rp_is_classic()) { return; }
+	if (wp_rp_is_classic() && !wp_rp_is_classic_old()) { return; }
 
 	if(!is_super_admin() || !is_admin_bar_showing())
 		return;
@@ -59,7 +59,7 @@ $wp_rp_output = array();
 function wp_rp_add_related_posts_hook($content) {
 	global $wp_rp_output, $post;
 
-	if (wp_rp_is_classic()) {
+	if (wp_rp_is_classic() && !wp_rp_is_classic_old()) {
 		return $content;
 	}
 
@@ -375,7 +375,7 @@ add_action('wp_ajax_rp_blogger_network_blacklist', 'wp_rp_ajax_blogger_network_b
 
 function wp_rp_head_resources() {
 	global $post, $wpdb;
-	if (wp_rp_is_classic()) { return; }
+	if (wp_rp_is_classic() && !wp_rp_is_classic_old()) { return; }
 	
 	//error_log("call to wp_rp_head_resources");
 
@@ -428,7 +428,7 @@ function wp_rp_head_resources() {
 
 	$output .= "<script type=\"text/javascript\">\n" . $output_vars . "</script>\n";
 
-	if ($remote_recommendations) {
+	if ($remote_recommendations && $statistics_enabled) {
 		$output .= '<script type="text/javascript" src="' . WP_RP_STATIC_BASE_URL . WP_RP_STATIC_RECOMMENDATIONS_JS_FILE . '?version=' . WP_RP_VERSION . '"></script>' . "\n";
 		$output .= '<link rel="stylesheet" href="' . WP_RP_STATIC_BASE_URL . WP_RP_STATIC_RECOMMENDATIONS_CSS_FILE . '?version=' . WP_RP_VERSION . '" />' . "\n";
 	}
@@ -485,7 +485,7 @@ function wp_rp_get_selected_posts() {
 global $wp_rp_is_first_widget;
 $wp_rp_is_first_widget = true;
 function wp_rp_get_related_posts($before_title = '', $after_title = '') {
-	if (wp_rp_is_classic()) { return; }
+	if (wp_rp_is_classic() && !wp_rp_is_classic_old()) { return; }
 	if (wp_rp_should_exclude()) {
 		return;
 	}
@@ -513,7 +513,7 @@ function wp_rp_get_related_posts($before_title = '', $after_title = '') {
 	}
 
 	$posts_footer = '';
-	if (current_user_can('edit_posts')) {
+	if (current_user_can('edit_posts')  && $statistics_enabled) {
 		$posts_footer .= '<div class="wp_rp_footer"><a class="wp_rp_edit" href="#" id="wp_rp_edit_related_posts">Edit Related Posts</a></div>';
 	}
 	if ($options['display_zemanta_linky']) {
