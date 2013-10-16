@@ -4,7 +4,7 @@ Tags: link, links, navigation, plugin, related, Post, posts, widget, widgets
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 2.9
+Stable tag: 2.8
 
 Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
 
@@ -63,7 +63,7 @@ Fix for security vulnerability. Upgrade immediately.
 * Bugfix in tag generator
 
 = 2.7.4 =
-* Thumbnailer supports Image Post Form in WordPress 3.6
+* Thumbnailer suppors Image Post Form in WordPress 3.6
 * Bugfix
 
 = 2.7.3 =
