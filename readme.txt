@@ -4,7 +4,7 @@ Tags: link, links, navigation, plugin, related, Post, posts, widget, widgets
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.6
-Stable tag: 2.9
+Stable tag: 3.0
 
 Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
 
