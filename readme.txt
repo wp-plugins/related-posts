@@ -56,6 +56,11 @@ Fix for security vulnerability. Upgrade immediately.
 
 == Changelog ==
 
+= 3.0 =
+* Language detection: new users with non-English interface don't get Related content widget, existing ones get one-time opt-out
+* Opt-out for users with Related Content (articles) on compose screen
+* Improved caching
+
 = 2.9 =
 * Bug fixes and updates
 
