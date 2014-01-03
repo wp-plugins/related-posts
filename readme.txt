@@ -17,6 +17,8 @@ Link to related content to help your readers. Get attention from other authors. 
 * Related articles help your readers find other related content from bloggers just like you. You can get the attention from the authors you’ve linked to.
 * In-text links are similar to related articles, but they also include links to Wikipedia, Google Maps, IMDb and others.
 
+This is basically a testbed for features. When features get stable they get into the main plug-in which is [WordPress Related Posts](http://wordpress.org/plugins/wordpress-23-related-posts-plugin/).
+
 == Frequently Asked Questions ==
 
 = What are Related Posts? =
