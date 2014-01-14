@@ -4,7 +4,7 @@ Tags: link, links, navigation, plugin, related, Post, posts, widget, widgets
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 3.4
+Stable tag: 3.4.1
 
 Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
 
@@ -62,6 +62,11 @@ That is how we keep this plugin free. Publishers pay us to show you related cont
 Fix for security vulnerability. Upgrade immediately.
 
 == Changelog ==
+
+= 3.4.1 =
+* Fixed thumbnailer issues
+* Changed default name for thumbnails to file's name
+* Fixed Open Graph related issue
 
 = 3.4 =
 * Setting that allows only admins to edit related posts, after they are published

@@ -6,6 +6,7 @@
 
 function wp_rp_add_image_sizes() {
 	$platform_options = wp_rp_get_platform_options();
+
 	add_image_size(WP_RP_THUMBNAILS_NAME, WP_RP_THUMBNAILS_WIDTH, WP_RP_THUMBNAILS_HEIGHT, true);
 	if ($platform_options['theme_name'] == 'pinterest.css') {
 		add_image_size(WP_RP_THUMBNAILS_NAME_PROP, WP_RP_THUMBNAILS_WIDTH, 0, false);
@@ -25,12 +26,11 @@ function wp_rp_upload_default_thumbnail_file() {
 	if (empty($_FILES['wp_rp_default_thumbnail'])) {
 		return new WP_Error('upload_error');
 	}
+
 	$file = $_FILES['wp_rp_default_thumbnail'];
 	if(isset($file['error']) && $file['error'] === UPLOAD_ERR_NO_FILE) {
 		return false;
 	}
-
-
 	if ($image_id = media_handle_upload('wp_rp_default_thumbnail', 0)) {
 		$image_data = wp_rp_get_image_data($image_id);
 		$platform_options = wp_rp_get_platform_options();
@@ -71,7 +71,7 @@ function wp_rp_upload_attachment($url, $post_id) {
 
 	$post_data = array(
 		'guid' => $url,
-		'post_title' => 'Zemanta Related Posts Thumbnail',
+		'post_title' => 'rp_' . $file_array['name'],
 	);
 
 	$attachment_id = media_handle_sideload($file_array, $post_id, null, $post_data);
@@ -88,14 +88,18 @@ function wp_rp_upload_attachment($url, $post_id) {
 	if (!$attach_data || $attach_data['width'] < $min_width || $attach_data['height'] < $min_height) {
 		wp_delete_attachment($attachment_id);
 		return false;
+
 	}
 
 	return $attachment_id;
 }
 
 function wp_rp_get_image_from_img_tag($post_id, $url, $img_tag) {
+
 	if (($attachment_id = wp_rp_attachment_url_to_postid($url)) || ($attachment_id = wp_rp_img_html_to_post_id($img_tag))) {
+
 		if (wp_rp_update_attachment_id($attachment_id)) {
+
 			return $attachment_id;
 		}
 	}
@@ -124,6 +128,7 @@ function wp_rp_actually_extract_images_from_post_html($post) {
 
 			$attachment_id = wp_rp_get_image_from_img_tag($post->ID, $url, $html_tag);
 			if ($attachment_id) {
+
 				break;
 			}
 		}
@@ -170,14 +175,19 @@ function wp_rp_cron_do_extract_images_from_post($post_id, $attachment_id) {
 	$post = get_post($post_id);
 
 	if ($attachment_id) {
+
 		$new_attachment_id = wp_rp_update_attachment_id($attachment_id);
 	} else {
+
 		$new_attachment_id = wp_rp_actually_extract_images_from_post_html($post);
 	}
 
 	if ($new_attachment_id) {
+
 		update_post_meta($post_id, '_wp_rp_image', $new_attachment_id);
 	} else {
+
+
 		update_post_meta($post_id, '_wp_rp_image', 'empty');
 	}
 }
@@ -238,6 +248,7 @@ function wp_rp_get_default_thumbnail_url($seed = false, $size = 'thumbnail') {
 
 function wp_rp_get_image_with_exact_size($image_data, $size) {
 	# Partially copied from wp-include/media.php image_get_intermediate_size and image_downsize
+
 	if (!$image_data) { return false; }
 
 	$img_url = wp_get_attachment_url($image_data['id']);
@@ -247,6 +258,22 @@ function wp_rp_get_image_with_exact_size($image_data, $size) {
 	if (!$size[0]) { $size[0] = (int) ($image_data['data']['width'] / $image_data['data']['height'] * $size[1]); }
 	if (!$size[1]) { $size[1] = (int) ($image_data['data']['height'] / $image_data['data']['width'] * $size[0]); }
 
+	if (!$image_data['data']['sizes']) {
+		$w = $image_data['data']['width'];
+		$h = $image_data['data']['height'];
+		if ($w == WP_RP_THUMBNAILS_WIDTH && $h == WP_RP_THUMBNAILS_HEIGHT) {
+			$file = explode("/", $image_data['data']['file']);
+			$file = $file[count($file) - 1];
+			$img_url = str_replace($img_url_basename, wp_basename($file), $img_url);
+			return array(
+				'url' => $img_url,
+				'file' => $file,
+				'width' => $w,
+				'height' => $h
+			);
+
+		}
+	}
 	foreach ($image_data['data']['sizes'] as $_size => $data) {
 		// width and height can be both string and integers. WordPress..
 		if (($size[0] == $data['width']) && ($size[1] == $data['height'])) {
@@ -260,7 +287,6 @@ function wp_rp_get_image_with_exact_size($image_data, $size) {
 			);
 		}
 	}
-
 	return false;
 }
 
@@ -279,10 +305,12 @@ function wp_rp_get_image_data($image_id) {
 }
 
 function wp_rp_get_attached_img_url($related_post, $size) {
+
 	$extracted_image = get_post_meta($related_post->ID, '_wp_rp_image', true);
 	if ($extracted_image === 'empty') { return false; }
 
 	$image_data = wp_rp_get_image_data((int)$extracted_image);
+	
 	if (!$image_data && $extracted_image) {
 		// image_id in the db is incorrect
 		delete_post_meta($related_post->ID, '_wp_rp_image');
@@ -353,6 +381,7 @@ function wp_rp_get_post_thumbnail_img($related_post, $size = null, $force = fals
 	if (!$size) { return false; }
 
 	if ($options['thumbnail_use_custom']) {
+
 		$thumbnail_src = get_post_meta($related_post->ID, $options["thumbnail_custom_field"], true);
 
 		if ($thumbnail_src) {
