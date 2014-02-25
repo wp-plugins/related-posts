@@ -1,7 +1,7 @@
 <?php
 
 define('WP_RP_STATIC_BASE_URL', 'http://rp.zemanta.com/static/');
-define('WP_RP_STATIC_THEMES_PATH', 'wp-rp-css/');
+define('WP_RP_STATIC_THEMES_PATH', 'themes/');
 define('WP_RP_STATIC_JSON_PATH', 'json/');
 
 define("WP_RP_DEFAULT_CUSTOM_CSS",
@@ -138,8 +138,14 @@ function wp_rp_upgrade() {
 
 	if($version) {
 		if(version_compare($version, WP_RP_VERSION, '<')) {
-			call_user_func('wp_rp_migrate_' . str_replace('.', '_', $version));
-			wp_rp_upgrade();
+			$upgrade_call = 'wp_rp_migrate_' . str_replace('.', '_', $version);
+			if (is_callable($upgrade_call)) {
+				call_user_func($upgrade_call);
+				wp_rp_upgrade();
+			}
+			else {
+				wp_rp_install();
+			}
 		}
 	} else {
 		wp_rp_install();
@@ -195,8 +201,7 @@ function wp_rp_install() {
 		'show_statistics' => false,
 		'show_traffic_exchange' => false,
 		'show_zemanta_linky_option' => true,
-		'classic_user' => strpos(get_bloginfo('language'), 'en') === 0, // Enable only if "any" english is the default language
-		'classic_user_old' => false // Deprecated!
+		'classic_user' => strpos(get_bloginfo('language'), 'en') === 0 // Enable only if "any" english is the default language
 	);
 
 	$wp_rp_options = array(
@@ -218,17 +223,6 @@ function wp_rp_install() {
 		'thumbnail_custom_field'		=> false,
 		'display_zemanta_linky'			=> false,
         'only_admins_can_edit_related_posts' => false,
-
-		'mobile' => array(
-			'display_comment_count'			=> false,
-			'display_publish_date'			=> false,
-			'display_excerpt'			=> false,
-			'display_thumbnail'			=> false,
-			'excerpt_max_length'			=> 200,
-			'theme_name' 				=> 'm-stream.css',
-			'theme_custom_css'			=> WP_RP_DEFAULT_CUSTOM_CSS,
-			'custom_theme_enabled' => false,
-		),
 		'desktop' => array(
 			'display_comment_count'			=> false,
 			'display_publish_date'			=> false,
@@ -253,6 +247,21 @@ function wp_rp_is_classic() {
 		return true;
 	}
 	return false;
+}
+
+function wp_rp_migrate_3_4_2() {
+	$wp_rp_meta = get_option('gp_meta');
+
+	$wp_rp_meta['version'] = '3.4.3';
+	$wp_rp_meta['new_user'] = false;
+	unset($wp_rp_meta['classic_user_old']);
+	
+	update_option('gp_meta', $wp_rp_meta);
+
+	$wp_rp_options = get_option('gp_options');
+	$wp_rp_options['custom_theme_enabled'] = 0;
+
+	update_option('gp_options', $wp_rp_options);
 }
 
 function wp_rp_migrate_3_4_1() {
