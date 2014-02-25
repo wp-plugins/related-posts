@@ -13,9 +13,9 @@
 #wp_rp_wrap div#wp_rp_statistics_wrap {position: relative; overflow: hidden;}
 #wp_rp_wrap div#wp_rp_statistics_holder {overflow: hidden;}
 
-#wp_rp_wrap div#wp_rp_statistics_collapsible {float: left; min-width: 600px;}
-#wp_rp_wrap div#wp_rp_statistics_collapsible.collapsed {border-bottom: 1px solid #ddd;}
-#wp_rp_wrap div#wp_rp_statistics_collapsible.collapsed {border-bottom: 1px solid #ddd;}
+.settings_block {float: left; min-width: 700px; clear:both; }
+.settings_block.collapsed {border-bottom: 1px solid #ddd;}
+.settings_block.collapsed {border-bottom: 1px solid #ddd;}
 
 #wp_rp_wrap div#wp_rp_statistics_wrap ul.statistics {margin: 0; float: left; width: 600px;}
 #wp_rp_wrap.wp_rp_dashboard div#wp_rp_statistics_wrap ul.statistics {float: none; width: auto;}
@@ -136,14 +136,9 @@ form.wp_rp_message_form a.dismiss {float: right;}
 #wp_rp_theme_options_wrap .theme-extra-options {clear: left;}
 #wp_rp_theme_options_wrap .custom-theme {clear: both;}
 
-#wp_rp_theme_options_wrap .wp_rp_settings_table {padding: 15px;border: 1px solid #CCC;width: 630px;margin-bottom: 30px;border-top: 5px solid #CCC;}
-#wp_rp_theme_options_wrap .wp_rp_settings_table tbody tr td {padding: 8px 10px;}
-#wp_rp_theme_options_wrap .wp_rp_settings_table tbody tr td h4 {font-size: 1.5em;font-weight: normal;}
-#wp_rp_theme_options_wrap .wp_rp_settings_table tbody tr td div .theme-extra-options label {}
-#wp_rp_theme_options_wrap .wp_rp_settings_table tbody tr td div .theme-extra-options label.selected {}
-#wp_rp_theme_options_wrap .wp_rp_settings_table tbody tr td div .theme-extra-options label input {display: none;}
-
 #wp_rp_theme_custom_css_wrap td {margin: 0; padding-top: 0;}
 #wp_rp_theme_custom_css_wrap .notice {margin: 0; padding: 0 0 3px 0; color: #666;}
 
 #wp_rp_tos {margin-top: 30px;}
+
+.custom-css-container {margin-top: 5px;}
