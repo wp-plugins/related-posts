@@ -36,21 +36,18 @@
 
 	<h2><?php _e('Subscribe to plugin updates and newsletter', 'wp_related_posts'); ?></h2>
 	<div class="container">
-		<table class="form-table">
+		<table class="form-table subscription-block">
 			<tr valign="top">
 				<th scope="row">
 					<?php _e('Email:', 'wp_related_posts'); ?>
 				</th>
 				<td>
-					<input type="text" id="wp_rp_subscribe_email" value="<?php esc_attr_e($meta['email']); ?>" class="regular-text" />
+					<input type="text" id="wp_rp_subscribe_email" value="<?php esc_attr_e($meta['email']); ?>" class="regular-text" /> 
+					<a id="wp_rp_subscribe_button" href="#" class="button-primary"><?php _e('Subscribe', 'wp_related_posts'); ?></a>
+					<a id="wp_rp_unsubscribe_button" href="#" class="button-primary"><?php _e('Unsubscribe', 'wp_related_posts'); ?></a>
 				</td>
 			</tr>
 		</table>
-
-		<div>
-			<a id="wp_rp_subscribe_button" href="#" class="button-primary"><?php _e('Subscribe', 'wp_related_posts'); ?></a>
-			<a id="wp_rp_unsubscribe_button" href="#" class="button-primary"><?php _e('Unsubscribe', 'wp_related_posts'); ?></a>
-		</div>
 	</div>
 	
 	<!-- MAIN FORM -->
@@ -230,7 +227,7 @@
 							</div>
 							<label>
 								<input name="wp_rp_classic_state" type="checkbox" id="wp_rp_classic_state" value="yes" <?php checked($meta['classic_user']); ?>>
-								<?php _e("Display widget with <a href=\"http://support.zemanta.com/customer/portal/articles/1423148-why-should-i-add-related-articles-from-around-the-web-\" target=\"blank\">articles from around</a> the web in your \"Compose-new-post\" page",'wp_related_posts');?>
+								<?php _e("Display widget with <a href=\"http://support.zemanta.com/customer/portal/articles/1423148-why-should-i-add-related-articles-from-around-the-web-\" target=\"blank\">articles from around the web</a> in your \"Compose-new-post\" page",'wp_related_posts');?>
 							</label><?php endif; ?>
 							<br/>
 							<label>
@@ -270,9 +267,11 @@
 						</td>
 					</tr>
 				</table>
-				<p class="submit"><input type="submit" value="<?php _e('Save changes', 'wp_related_posts'); ?>" class="button-primary" /></p>
 			</div>
 		</div>
+		<p class="submit end-block">
+			<input type="submit" value="<?php _e('Save changes', 'wp_related_posts'); ?>" class="button-primary" />
+		</p>
 	</form>
 </div>
 
