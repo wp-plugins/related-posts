@@ -63,6 +63,9 @@ Fix for security vulnerability. Upgrade immediately.
 
 == Changelog ==
 
+= 3.4.5 =
+* Dashboard bug fix
+
 = 3.4.4 =
 * UI fixes
 
