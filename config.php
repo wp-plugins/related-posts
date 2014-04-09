@@ -1,6 +1,6 @@
 <?php
 
-define('WP_RP_STATIC_BASE_URL', 'http://rp.zemanta.com/static/');
+define('WP_RP_STATIC_BASE_URL', 'https://wprpp.s3.amazonaws.com/static/');
 define('WP_RP_STATIC_THEMES_PATH', 'themes/');
 define('WP_RP_STATIC_JSON_PATH', 'json/');
 
@@ -46,9 +46,10 @@ define("WP_RP_RECOMMENDATIONS_NUM_PREGENERATED_POSTS", 50);
 
 define("WP_RP_THUMBNAILS_NUM_PREGENERATED_POSTS", 50);
 
-global $wp_rp_options, $wp_rp_meta;
+global $wp_rp_options, $wp_rp_meta, $wp_rp_global_notice_pages;
 $wp_rp_options = false;
 $wp_rp_meta = false;
+$wp_rp_global_notice_pages = array('plugins.php', 'index.php', 'update-core.php');
 
 function wp_rp_get_options() {
 	global $wp_rp_options, $wp_rp_meta;
@@ -106,6 +107,16 @@ function wp_rp_update_options($new_options) {
 	}
 
 	return $r;
+}
+
+function wp_rp_set_global_notice() {
+	$wp_rp_meta = get_option('gp_meta');
+	$settings_url = admin_url('options-general.php?page=wordpress-related-posts&gp_global_notice=0#wp_rp_about_collapsible');
+	$wp_rp_meta['global_notice'] = array(
+		'title' => 'Thanks for using Related posts plugin. We like you.',
+		'message' => 'Did you notice you can <strong>now</strong> insert related articles while in <strong>text mode</strong>? <br>Read more about it in <a href="'.$settings_url.'">Settings</a> under About related posts section.'
+	);
+	update_option('gp_meta', $wp_rp_meta);
 }
 
 function wp_rp_activate_hook() {
@@ -196,6 +207,7 @@ function wp_rp_install() {
 		'show_turn_on_button' => true,
 		'name' => '',
 		'email' => '',
+		'global_notice' => null,
 		'remote_notifications' => array(),
 		'turn_on_button_pressed' => false,
 		'show_statistics' => false,
@@ -237,7 +249,7 @@ function wp_rp_install() {
 
 	update_option('gp_meta', $wp_rp_meta);
 	update_option('gp_options', $wp_rp_options);
-
+	wp_rp_set_global_notice();
 	wp_rp_related_posts_db_table_install();
 }
 
@@ -249,11 +261,21 @@ function wp_rp_is_classic() {
 	return false;
 }
 
+function wp_rp_migrate_3_4_5() {
+	$wp_rp_meta = get_option('gp_meta');
+	$wp_rp_meta['version'] = '3.4.6';
+	$wp_rp_meta['new_user'] = false;
+	update_option('gp_meta', $wp_rp_meta);
+
+	wp_rp_set_global_notice();
+}
+
 function wp_rp_migrate_3_4_4() {
 	$wp_rp_meta = get_option('gp_meta');
 
 	$wp_rp_meta['version'] = '3.4.5';
 	$wp_rp_meta['new_user'] = false;
+	wp_rp_set_global_notice();
 	update_option('gp_meta', $wp_rp_meta);
 }
 

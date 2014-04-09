@@ -1,9 +1,4 @@
 <?php
-
-function wp_rp_get_template($file) {
-	return dirname(__FILE__) . '/views/' . $file . '.php';
-}
-
 /**
 * Place menu icons at admin head
 **/
@@ -54,11 +49,11 @@ function wp_rp_settings_admin_menu() {
 		$title .= '</span>';
 	}
 	
-	$page = add_menu_page(__('Related Posts', 'wp_related_posts'), $title, 
+	$page = add_options_page(__('Related Posts', 'wp_related_posts'), $title, 
 						'manage_options', 'wordpress-related-posts',
-						'wp_rp_settings_page', 'div');
+						'wp_rp_settings_page');
 
-	add_action('admin_print_styles-' . $page, 'wp_rp_settings_styles');
+
 	add_action('admin_print_scripts-' . $page, 'wp_rp_settings_scripts');
 }
 add_action('admin_menu', 'wp_rp_settings_admin_menu');
@@ -322,6 +317,11 @@ function wp_rp_settings_page() {
 	$options = wp_rp_get_options();
 	$meta = wp_rp_get_meta();
 
+	if ( isset( $_GET['gp_global_notice'] ) && $_GET['gp_global_notice'] === '0') {
+		$meta['global_notice'] = null;
+		wp_rp_update_meta($meta);
+	}
+	
 	if($options['ctr_dashboard_enabled'] && (!$meta['blog_id'] || !$meta['auth_key'])) {
 		$button_type = isset($postdata['wp_rp_button_type']) ? $postdata['wp_rp_button_type'] : 'other';
 		wp_rp_register_blog($button_type);

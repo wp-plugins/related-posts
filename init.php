@@ -1,6 +1,6 @@
 <?php
 
-define('WP_RP_VERSION', '3.4.5');
+define('WP_RP_VERSION', '3.4.56');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
@@ -14,7 +14,7 @@ include_once(dirname(__FILE__) . '/widget.php');
 include_once(dirname(__FILE__) . '/thumbnailer.php');
 include_once(dirname(__FILE__) . '/settings.php');
 include_once(dirname(__FILE__) . '/recommendations.php');
-include_once(dirname(__FILE__) . '/dashboard_widget.php');
+  //include_once(dirname(__FILE__) . '/dashboard_widget.php');
 include_once(dirname(__FILE__) . '/edit_related_posts.php');
 include_once(dirname(__FILE__) . '/compatibility.php');
 
@@ -22,7 +22,6 @@ register_activation_hook(__FILE__, 'wp_rp_activate_hook');
 register_deactivation_hook(__FILE__, 'wp_rp_deactivate_hook');
 
 add_action('wp_head', 'wp_rp_head_resources');
-add_action('wp_before_admin_bar_render', 'wp_rp_extend_adminbar');
 
 add_action('plugins_loaded', 'wp_rp_init_zemanta');
 
@@ -34,18 +33,35 @@ function wp_rp_init_zemanta() {
 	}
 }
 
-function wp_rp_extend_adminbar() {
-	global $wp_admin_bar;
-
-	if(!is_super_admin() || !is_admin_bar_showing())
-		return;
-
-	$wp_admin_bar->add_menu(array(
-		'id' => 'wp_rp_adminbar_menu',
-		'title' => __('Related Posts', 'wp_related_posts'),
-		'href' => admin_url('admin.php?page=wordpress-related-posts&ref=adminbar')
-	));
+function wp_rp_get_template($file) {
+	return dirname(__FILE__) . '/views/' . $file . '.php';
 }
+
+function wp_rp_admin_style() {
+	wp_enqueue_style('wp_rp_admin_style', plugins_url('static/css/dashboard.css', __FILE__));
+}
+add_action( 'admin_enqueue_scripts', 'wp_rp_admin_style');
+  
+function wp_rp_global_notice() {
+	global $pagenow, $wp_rp_global_notice_pages;
+	if (!current_user_can('delete_users')) {
+		return;
+	}
+	
+	$gp_meta = wp_rp_get_meta();
+
+	$close_url = add_query_arg( array(
+		'page' => 'wordpress-related-posts',
+		'gp_global_notice' => 0,
+	), admin_url( 'admin.php' ));
+
+	$notice = $gp_meta['global_notice'];
+	
+	if ($notice && in_array($pagenow, $wp_rp_global_notice_pages)) {
+		include(wp_rp_get_template('global_notice'));
+	}
+}
+add_action('all_admin_notices', 'wp_rp_global_notice' );
 
 global $wp_rp_output;
 $wp_rp_output = array();

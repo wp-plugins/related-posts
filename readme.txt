@@ -4,7 +4,7 @@ Tags: link, links, navigation, plugin, related, Post, posts, widget, widgets
 License: GPLv2
 Requires at least: 3.3
 Tested up to: 3.8
-Stable tag: 3.4.5
+Stable tag: 3.4.6
 
 Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
 
@@ -18,6 +18,10 @@ Link to related content to help your readers. Get attention from other authors. 
 * In-text links are similar to related articles, but they also include links to Wikipedia, Google Maps, IMDb and others.
 
 This is basically a testbed for features. When features get stable they get into the main plug-in which is [WordPress Related Posts](http://wordpress.org/plugins/wordpress-23-related-posts-plugin/).
+
+**Share the Link Love**
+
+[vimeo http://vimeo.com/46745200]
 
 == Frequently Asked Questions ==
 
@@ -62,6 +66,12 @@ That is how we keep this plugin free. Publishers pay us to show you related cont
 Fix for security vulnerability. Upgrade immediately.
 
 == Changelog ==
+
+= 3.4.6 =
+* Added support for HTTPS dashboard
+* Moved all links to plugin settings under Settings
+* Improved compatibility with Editorial Assistant
+* Added About section in Related Posts Settings
 
 = 3.4.5 =
 * Dashboard bug fix

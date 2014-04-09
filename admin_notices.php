@@ -25,6 +25,9 @@ function wp_rp_prepare_admin_connect_notice() {
 }
 
 function wp_rp_admin_connect_notice() {
+	if (!current_user_can('delete_users')) {
+		return;
+	}
 	wp_enqueue_style( 'wp_rp_connect_style' );
 	wp_enqueue_script( 'wp_rp_connect_js' );
 	?>
