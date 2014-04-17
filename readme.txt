@@ -3,7 +3,7 @@ Contributors: zemanta
 Tags: link, links, navigation, plugin, related, Post, posts, widget, widgets
 License: GPLv2
 Requires at least: 3.3
-Tested up to: 3.8
+Tested up to: 3.9
 Stable tag: 3.4.6
 
 Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
