@@ -245,11 +245,11 @@ function wp_rp_get_default_thumbnail_url($seed = false, $size = 'thumbnail') {
 	} else {
 		if ($seed) {
 			$next_seed = rand();
-			srand($seed);
+			srand((int) $seed);
 		}
 		$file = rand(0, WP_RP_THUMBNAILS_DEFAULTS_COUNT - 1) . '.jpg';
 		if ($seed) {
-			srand($next_seed);
+			srand((int) $next_seed);
 		}
 		return plugins_url('/static/thumbs/' . $file, __FILE__);
 	}

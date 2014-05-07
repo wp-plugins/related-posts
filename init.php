@@ -1,6 +1,6 @@
 <?php
 
-define('WP_RP_VERSION', '3.4.56');
+define('WP_RP_VERSION', '3.4.7');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
@@ -44,7 +44,7 @@ add_action( 'admin_enqueue_scripts', 'wp_rp_admin_style');
   
 function wp_rp_global_notice() {
 	global $pagenow, $wp_rp_global_notice_pages;
-	if (!current_user_can('delete_users')) {
+	if (!current_user_can('manage_options')) {
 		return;
 	}
 	
@@ -448,14 +448,16 @@ function wp_rp_head_resources() {
 		$output .= '<script type="text/javascript" src="' . WP_RP_STATIC_BASE_URL . WP_RP_STATIC_CTR_PAGEVIEW_FILE . '?version=' . WP_RP_VERSION . '" async></script>' . "\n";
 	}
 
-	if ($options['enable_themes']) {
-		$static_url = plugins_url('static/', __FILE__);
-		$theme_url = $static_url . WP_RP_STATIC_THEMES_PATH;
+	$static_url = plugins_url('static/', __FILE__);
+	$theme_url = $static_url . WP_RP_STATIC_THEMES_PATH;
 
+	if ($platform_options['custom_theme_enabled']) {
+		$output .= '<style type="text/css">' . "\n" . $platform_options['theme_custom_css'] . "</style>\n";
+	}
+	
+	if ($options['enable_themes']) {
+		
 		$output .= '<link rel="stylesheet" href="' . $theme_url . $platform_options['theme_name'] . '?version=' . WP_RP_VERSION . '" />' . "\n";
-		if ($platform_options['custom_theme_enabled']) {
-			$output .= '<style type="text/css">' . "\n" . $platform_options['theme_custom_css'] . "</style>\n";
-		}
 
 		if ($platform_options['theme_name'] === 'm-stream.css') {
 			//error_log("infinite JS loaded");
