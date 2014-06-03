@@ -1,6 +1,6 @@
 <?php
 
-define('WP_RP_VERSION', '3.4.8');
+define('WP_RP_VERSION', '3.4.9');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
@@ -104,7 +104,7 @@ function wp_rp_get_platform_options() {
 		$thumb_options['custom_thumbnail_height'] = $options['custom_thumbnail_height'];
 	}
 
-	return $options['desktop'] + $thumb_options;
+	return array_merge($options['desktop'], $thumb_options);
 }
 
 function wp_rp_ajax_load_articles_callback() {

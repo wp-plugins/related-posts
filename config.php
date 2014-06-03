@@ -1,6 +1,7 @@
 <?php
 
-define('WP_RP_STATIC_BASE_URL', 'https://wprpp.s3.amazonaws.com/static/');
+define('WP_RP_STATIC_BASE_URL', 'https://rp.zemanta.com/static/');
+define("WP_RP_ZEMANTA_API_URL", "http://api.zemanta.com/services/rest/0.0/");
 define('WP_RP_STATIC_THEMES_PATH', 'themes/');
 define('WP_RP_STATIC_JSON_PATH', 'json/');
 
@@ -209,6 +210,9 @@ function wp_rp_install() {
 		'show_turn_on_button' => true,
 		'name' => '',
 		'email' => '',
+		'subscribed' => false,
+		'registered' => false,
+		'zemanta_api_key' => false,
 		'global_notice' => null,
 		'remote_notifications' => array(),
 		'turn_on_button_pressed' => false,
@@ -261,6 +265,19 @@ function wp_rp_is_classic() {
 		return true;
 	}
 	return false;
+}
+
+function wp_rp_migrate_3_4_8() {
+	$wp_rp_meta = get_option('gp_meta');
+	$wp_rp_meta['version'] = '3.4.9';
+	$wp_rp_meta['new_user'] = false;
+
+	$wp_rp_meta['subscribed'] = false;
+	$wp_rp_meta['registered'] = false;
+	$wp_rp_meta['zemanta_api_key'] = false;
+	
+	update_option('gp_meta', $wp_rp_meta);
+	
 }
 
 function wp_rp_migrate_3_4_7() {
