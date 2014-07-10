@@ -156,8 +156,8 @@ form.wp_rp_message_form a.dismiss {float: right;}
 
 #wpwrap .subscription-container {
 	border: 1px solid #ccc;
-width: 800px;
-padding: 5px 5px 5px 5px;
-background-color: #eee;
-margin-bottom: 20px;
+	width: 700px;
+	padding: 5px 5px 5px 5px;
+	background-color: #eee;
+	margin-bottom: 20px;
 }

@@ -1,6 +1,6 @@
 <?php
 
-define('WP_RP_VERSION', '3.5');
+define('WP_RP_VERSION', '3.5.1');
 
 define('WP_RP_PLUGIN_FILE', plugin_basename(__FILE__));
 
