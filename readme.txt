@@ -2,8 +2,8 @@
 Contributors: zemanta
 Tags: link, links, navigation, plugin, related, Post, posts, widget, widgets
 License: GPLv2
-Requires at least: 3.3
-Tested up to: 3.9.1
+Requires at least: 3.6
+Tested up to: 4.0
 Stable tag: 3.5.1
 
 Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
@@ -47,6 +47,9 @@ If your content is all English, safe for work and of good quality, we will recom
 = I see promoted content. What is that? =
 That is how we keep this plugin free. Publishers pay us to show you related content from their sites. You don’t have to use it. However, we believe that promoted content widens the range of good quality content you can link to.
 
+= What about Terms of Service and Privacy policy? =
+	
+Before using the plugin please read the full version of [Zemanta Terms of Service](http://www.zemanta.com/legal/terms-of-service/) and [Zemanta Privacy Policy](http://www.zemanta.com/legal/privacy/).
 
 == Installation ==
 
@@ -71,6 +74,11 @@ That is how we keep this plugin free. Publishers pay us to show you related cont
 
 = 2.7.2 =
 Fix for security vulnerability. Upgrade immediately.
+
+== Terms of Service ==
+
+The plugin source code is released under GPLv2. Usage of plugin is governed by [Zemanta Terms of Service](http://www.zemanta.com/legal/terms-of-service/) and [Zemanta Privacy Policy](http://www.zemanta.com/legal/privacy/).	
+
 
 == Changelog ==
 
