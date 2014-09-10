@@ -48,7 +48,6 @@ If your content is all English, safe for work and of good quality, we will recom
 That is how we keep this plugin free. Publishers pay us to show you related content from their sites. You don’t have to use it. However, we believe that promoted content widens the range of good quality content you can link to.
 
 = What about Terms of Service and Privacy policy? =
-	
 Before using the plugin please read the full version of [Zemanta Terms of Service](http://www.zemanta.com/legal/terms-of-service/) and [Zemanta Privacy Policy](http://www.zemanta.com/legal/privacy/).
 
 == Installation ==
