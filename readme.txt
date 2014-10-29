@@ -4,7 +4,7 @@ Tags: link, links, navigation, plugin, related, Post, posts, widget, widgets
 License: GPLv2
 Requires at least: 3.6
 Tested up to: 4.0
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 
 Link to related content to help your readers. Get attention from other authors. Make great outbound links for SEO. With just a few clicks.
 
@@ -81,10 +81,12 @@ The plugin source code is released under GPLv2. Usage of plugin is governed by [
 
 == Changelog ==
 
+= 3.5.2 =
+* Fixed excerpt bug
+
 = 3.5.1 =
-* Fixed multiple related posts plugins fatal error
-* The subscription API forwards blog URLs
-* Responsive themes bugfix
+* Various little bug fixes
+* Added Terms of Service
 
 = 3.5 =
 * Removed statistics

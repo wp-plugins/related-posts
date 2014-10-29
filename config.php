@@ -261,6 +261,14 @@ function wp_rp_is_classic() {
 	return false;
 }
 
+function wp_rp_migrate_3_5_1() {
+	$meta = get_option('gp_meta');
+	$meta['version'] = '3.5.2';
+	$meta['new_user'] = false;
+	update_option('gp_meta', $meta);
+}
+
+
 function wp_rp_migrate_3_5() {
 	$meta = get_option('gp_meta');
 	$meta['version'] = '3.5.1';
