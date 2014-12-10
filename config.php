@@ -185,8 +185,8 @@ function wp_rp_related_posts_db_table_install() {
 	  post_date datetime NOT NULL,
 	  label VARCHAR(" . WP_RP_MAX_LABEL_LENGTH . ") NOT NULL,
 	  weight float,
-	  INDEX post_id (post_id),
-	  INDEX label (label)
+	  KEY post_id (post_id),
+	  KEY label (label)
 	 );";
 
 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
@@ -260,6 +260,14 @@ function wp_rp_is_classic() {
 	}
 	return false;
 }
+
+function wp_rp_migrate_3_5_2() {
+	$meta = get_option('gp_meta');
+	$meta['version'] = '3.5.3';
+	$meta['new_user'] = false;
+	update_option('gp_meta', $meta);
+}
+
 
 function wp_rp_migrate_3_5_1() {
 	$meta = get_option('gp_meta');
